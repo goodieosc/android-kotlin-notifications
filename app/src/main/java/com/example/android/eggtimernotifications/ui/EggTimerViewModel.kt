@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.CountDownTimer
 import android.os.SystemClock
+import android.telecom.Call
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
@@ -119,6 +120,13 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
                 val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
 
                 // TODO: Step 1.5 get an instance of NotificationManager and call sendNotification
+
+                //In order to call the sendNotification() function, you need an instance of NotificationManager.
+                // NotificationManager is a system service which provides all the functions exposed for notifications api
+                val notificationManager = ContextCompat.getSystemService(app,NotificationManager::class.java) as NotificationManager
+
+                // Call the sendNotification() extension function with the notification message
+                notificationManager.sendNotification(app.getString(R.string.timer_running), app)
 
                 // TODO: Step 1.15 call cancel notification
 

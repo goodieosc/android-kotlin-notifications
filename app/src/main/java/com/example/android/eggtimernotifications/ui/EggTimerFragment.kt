@@ -51,14 +51,40 @@ class EggTimerFragment : Fragment() {
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         // TODO: Step 1.7 call create channel
+        createChannel(
+            getString(R.string.egg_notification_channel_id),
+            getString(R.string.egg_notification_channel_name)
+        )
 
         return binding.root
     }
 
     private fun createChannel(channelId: String, channelName: String) {
         // TODO: Step 1.6 START create a channel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //Check version, notifications channels only available from API 26.
+            val notificationChannel = NotificationChannel(
+                channelId, //Channel ID from function constructor
+                channelName, //Channel name passed from function constructor
+                NotificationManager.IMPORTANCE_LOW //Importance level level
+            )
+            // TODO: Step 2.6 disable badges for this channel
 
-        // TODO: Step 1.6 END create a channel
+            //Set aspects of the nofification
+            notificationChannel.enableLights(true) //Phone light flashing upon notification
+            notificationChannel.lightColor = Color.RED //Flash red
+            notificationChannel.enableVibration(true) //Vibrate
+            notificationChannel.description = "Time for breakfast"
+
+            val notificationManager = requireActivity().getSystemService( //Get an instance of NotificationManager by calling getSystemService
+                NotificationManager::class.java
+            )
+
+            //Call createNotificationChannel on NotificationManager and pass notificationChannel
+            notificationManager.createNotificationChannel(notificationChannel)
+
+
+            // TODO: Step 1.6 END create channel
+        }
 
     }
 

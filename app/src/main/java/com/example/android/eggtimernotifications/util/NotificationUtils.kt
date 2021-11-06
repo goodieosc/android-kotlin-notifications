@@ -42,6 +42,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     // this activity
     // TODO: Step 1.11 create intent
 
+
     // TODO: Step 1.12 create PendingIntent
 
     // TODO: Step 2.0 add style
@@ -49,11 +50,20 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     // TODO: Step 2.2 add snooze action
 
     // TODO: Step 1.2 get an instance of NotificationCompat.Builder
-    // Build the notification
+
+//    To support devices running older versions you need to use NotificationCompat builder instead of notification builder.
+//    Get an instance of the NotificationCompat builder, pass in the app context and a channel id. The channel id is a string
+//    value from string resources which uses the matching channel.
+    val builder = NotificationCompat.Builder(applicationContext,applicationContext.getString(R.string.egg_notification_channel_id))
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
 
     // TODO: Step 1.3 set title, text and icon to builder
+
+//    Set the notification icon to represent your app, title and the content text for the message you want to give to the user.
+        .setSmallIcon(R.drawable.cooked_egg)
+        .setContentTitle(applicationContext.getString(R.string.notification_title))
+        .setContentText(messageBody)
 
     // TODO: Step 1.13 set content intent
 
@@ -64,6 +74,10 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         // TODO: Step 2.5 set priority
 
     // TODO: Step 1.4 call notify
+    //call notify() with a unique id for your notification and with the Notification object from your builder.
+    // This id represents the current notification instance and is needed for updating or canceling this notification.
+    // Since your app will only have one active notification at a given time, you can use the same id for all your notifications.
+    notify(NOTIFICATION_ID, builder.build())
 
 }
 
