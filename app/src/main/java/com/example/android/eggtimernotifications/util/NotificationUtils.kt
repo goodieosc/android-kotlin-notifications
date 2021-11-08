@@ -53,6 +53,14 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     )
 
     // TODO: Step 2.0 add style
+    val eggImage = BitmapFactory.decodeResource( //Add image
+        applicationContext.resources,
+        R.drawable.cooked_egg
+    )
+
+    val bigPicStyle = NotificationCompat.BigPictureStyle() //Add a predefined style to the notification
+        .bigPicture(eggImage)
+        .bigLargeIcon(null)
 
     // TODO: Step 2.2 add snooze action
 
@@ -77,6 +85,9 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         .setAutoCancel(true) //Tell the notification to clear when the intent is used.
 
         // TODO: Step 2.1 add style to builder
+
+        .setStyle(bigPicStyle)
+        .setLargeIcon(eggImage)
 
         // TODO: Step 2.3 add snooze action
 
