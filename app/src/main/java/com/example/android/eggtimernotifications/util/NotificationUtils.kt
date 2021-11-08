@@ -104,6 +104,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
         )
 
         // TODO: Step 2.5 set priority
+        .setPriority(NotificationCompat.PRIORITY_HIGH)
 
     // TODO: Step 1.4 call notify
     //call notify() with a unique id for your notification and with the Notification object from your builder.
