@@ -68,6 +68,9 @@ class EggTimerFragment : Fragment() {
                 NotificationManager.IMPORTANCE_HIGH //Importance level level
             )
             // TODO: Step 2.6 disable badges for this channel
+                .apply {
+                    setShowBadge(false)
+                }
 
             //Set aspects of the nofification
             notificationChannel.enableLights(true) //Phone light flashing upon notification
