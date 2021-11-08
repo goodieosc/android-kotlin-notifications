@@ -91,3 +91,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 }
 
 // TODO: Step 1.14 Cancel all notifications
+//Cancel notification if timer is cancelled mid way
+fun NotificationManager.cancelNotifications() {
+    cancelAll()
+}
